@@ -1,0 +1,57 @@
+""":
+
+Challenge 1
+Create a custom function called countstringfields that determines the
+number of fields of type string in an input feature class. Create this
+function in a separate script ( for example, mycount.py ) that you call
+from another script ( for example, callingscript.py ). You can use the
+streets.shp feature class in the Exercise12 folder.
+Challenge 2
+You are given a feature class called parcels.shp located in the Exercise12
+folder that contains the following fields: FID, Shape, Landuse, and Value.
+Modify the parceltax.py script so that it determines the property tax for
+each parcel and stores these values in a list. You should use the class
+created in the parcelclass.py script ? the class can remain unchanged.
+Print the values of the final list as follows:
+FID: <property tax>
+"""
+# Author:      yamakak
+#
+# Created:     07/02/2018
+# Copyright:   (c) yamakak 2018
+# Licence:     <your licence>
+#-------------------------------------------------------------------------------
+def countstringfields(layer = None):   #numberStringFieldsWithLayer
+
+    # If no layer is passed in, stop the function
+    if layer == None:
+        return None
+
+    # Get the count for each field with type "String"
+    n = 0
+    for field in arcpy.ListFields(layer):
+        if field.type == "String":
+            n += 1
+
+    return n
+
+
+    # Add your custom module folder to the system paths
+    import sys
+    sys.path.append(r"Path\to\your\custom\module\folder")
+
+    # import your custom moudle
+    import customModule
+
+    # Make a layer object from your feature layer
+    streetsLayer = arcpy.mapping.Layer("streets")
+
+    # Call you custom function from the module
+    numberOfFieldsTypeString = customModule.numberStringFieldsWithLayer(streetsLayer)
+
+    # Remove your layer reference
+    del streetsLayer
+
+    # Print your results
+    print numberOfFieldsTypeString
+
