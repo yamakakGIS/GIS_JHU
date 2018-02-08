@@ -1,0 +1,10 @@
+import arcpy
+from arcpy import env
+env.workspace = "C:/EsriPress/Python/Data/Exercise07"
+FC = "airports.shp"
+rows = arcpy.SearchCursor(fc)    ==(fc,   "", "String")
+fields = arcpy.ListFields(fc)
+for field in fields:
+    if fields.name == "NAME"
+        for row in rows:
+            print "Name = {0}".format(row.getValue(field.name))
