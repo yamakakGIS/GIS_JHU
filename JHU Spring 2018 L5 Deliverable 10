@@ -37,21 +37,35 @@ def countstringfields(layer = None):   #numberStringFieldsWithLayer
 
 
     # Add your custom module folder to the system paths
+ #callingscript.py
+import arcpy
+from arcpy import env
+try:
+    env.workspace = "D:/JHU/Sp 2018/Exercise12"
+    # Add your custom module folder to the system paths
+    fields = arcpy.ListFields( "streets.shp" )
+    namelist = []
+    for field in fields:
+        namelist.append( field.name )    
     import sys
-    sys.path.append(r"Path\to\your\custom\module\folder")
+    sys.path.append(r"D:\JHU\Sp 2018\Lab 5")
+ 
+# import your custom moudle
+    import countstringfields
 
-    # import your custom moudle
-    import customModule
+# Make a layer object from your feature layer
+    streetsLayer = arcpy.mapping.Layer("D:/JHU/Sp 2018/Exercise12/streets.shp")
+    
+# Call you custom function from the module
+    numberOfFieldsTypeString = countstringfields(streetsLayer)
 
-    # Make a layer object from your feature layer
-    streetsLayer = arcpy.mapping.Layer("streets")
-
-    # Call you custom function from the module
-    numberOfFieldsTypeString = customModule.numberStringFieldsWithLayer(streetsLayer)
-
-    # Remove your layer reference
+# Remove your layer reference
     del streetsLayer
 
-    # Print your results
+# Print your results
     print numberOfFieldsTypeString
+except arcpy.ExecuteError:
+    print arcpy.GetMessages(2)
+except:
+    print "There has been a nontool error."    
 
