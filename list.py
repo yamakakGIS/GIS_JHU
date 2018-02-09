@@ -5,6 +5,6 @@ def listfieldnames(table):
   for field in fields:
     namelist.append(field.name)
     return namelist
-    
-fieldnames = listfieldnames("C:/EsriPress/Python/Data/Exercise12/streets.shp")
-print fieldnames
+#if __name__ == "__main__":    
+#    fieldnames = listfieldnames("D:/JHU/Sp 2018/Exercise12/streets.shp")
+#    print fieldnames
