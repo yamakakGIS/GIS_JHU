@@ -20,4 +20,4 @@ try:
 except arcpy.ExecuteError:
     print arcpy.GetMessages(2)
 except:
-    print "There has been a nontool error."    
+    print "There has been a non tool error."    
